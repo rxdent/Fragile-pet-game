@@ -29,7 +29,10 @@ c = 100 #cleanliness
 b = 100 #bathroom
 money = 150
 
-pet_food = []
+food = []
+
+store = {"Boring food": 10, "Normal food": 15, "Good food": 20, "Gourmet food": 25, "Michilin 3 star food": 30}
+store_list = list(store)
 
 stats = { 
     "hunger": "h",
@@ -84,49 +87,49 @@ def animation(place):
 
 def store():
     animation("the store")
-    
+    os.system("clear")
+    print('"Welcome to the Pet store! What would you like to buy?" - (Snoopy the store attendant 🐶)')
+
+    for index, item in enumerate(store_list, start=1):
+        print(f"{index}: {item} (")
+    print(store_list)
 
     pass
 
 
 def base_system():
-    global h, f, c, b, money, pet_food
+    global h, f, c, b, money, food
 
-    stats = (f"""\nYour stats:
+    while h > 0 and f > 0 and c > 0 and b >0:
+        stats = (f"""\nYour stats:
 Hunger: {h}
 Fun: {f}
 Cleanliness: {c}
 Bathroom: {b}
 Wallet: ${money}""")
-    print(stats)
+        print(stats)
 
-
-    while h > 0 and f > 0 and c > 0 and b >0:
         task = input("Task: ").lower()
 
         if task == "feed":
             os.system("clear")
-            print(f"Your food: {pet_food}\n")
+            print(f"Your food: {food}\n")
             print("Select something from the shelf!")
-            print(stats)
 
         elif task == "play":
             os.system("clear")
-            f = +15
+            f += 15
             print(f"You played with pet! Pet's fun level went up by 15.")
-            print(stats)
 
         elif task == "bath":
             os.system("clear")
-            c = +30
+            c += 30
             print("You bathed pet! Pet's cleanliness level went up by 30.")
-            print(stats)
 
         elif task =="take outside":
             os.system("clear")
-            b = +50
+            b += 50
             print("You let pet outside... pets bathroom level went up by 50.")
-            print(stats)
 
         elif task == "commands":
             os.system("clear")
@@ -136,6 +139,7 @@ Wallet: ${money}""")
 "bath" = bathe pet
 "take outside" = Let pet use the bathroom
 "work" = Go to work
+"store" = Go to the store
 "commands" Shows commands''')
         elif task == "store":
             store()
@@ -196,6 +200,7 @@ Commands:
 "bath" = bathe pet
 "take outside" = Let pet use the bathroom
 "work" = Go to work
+"store" = Go to the store
 "commands" = Shows commands
 
 Press enter to continue """)
